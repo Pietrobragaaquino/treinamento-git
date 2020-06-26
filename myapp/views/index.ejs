@@ -11,7 +11,7 @@
 		<h1>Cadastro em tempo de execução.</h1>
 		<fieldset>
 			<legend> <b>Cadastro de pessoas.</b></legend>
-			<form>
+			<form action = "/cadastrar-pessoa" method = "POST" onsubmit="return validacao()">
 				<div>
 					<b> Nome:</b> <input class="campo" type="text" name="nome" id = "nome" style = "margin-left:79px">	
 				</div>
@@ -28,7 +28,7 @@
 					<b>Endereço:</b><input class = "campo" type="text" name="endereço" id = "endereco" style="margin-left:60px">	
 				</div>
 				<div>
-					<input type="button" value = "Cadastrar" style = "margin-left:230px; margin-top:18px" onclick="cadastrarPessoas()">
+					<input type="submit" value = "Cadastrar" style = "margin-left:230px; margin-top:18px">
 				</div>
 			</form>
 		</fieldset>
