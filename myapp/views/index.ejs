@@ -3,9 +3,45 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+   	<script type="text/javascript" src = "/javascripts/validacao.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <fieldset>
+    	<form action="/cadastrar-pessoa" method="POST" onsubmit="return validacao()">
+    	Nome:
+ 		<input type="text" id="nome" name="nome"> <br>
+ 		Sobrenome:
+ 		<input type="text" id="sobrenome" name="sobrenome"><br>
+ 		Telefone:
+ 		<input type="text" id="telefone" name="telefone">
+ 		<input type="submit" label = "Enviar">
+ 		<h1><%= pessoas.length %></h1>
+
+ 		<table border="1">
+
+  			<tr>
+  				<td>Nome</td>
+  				<td>Sobrenome</td>
+  				<td>telefone</td>
+  			</tr>
+
+  			<% for(i=0;i<pessoas.length;i++) { %>
+  				<tr>
+  					<td><%= pessoas[i].nome %></td>
+  					<td><%= pessoas[i].sobrenome %></td>
+  					<td><%= pessoas[i].telefone %></td>
+  				</tr>
+  			<% } %>
+
+  			<h1> OLAAAAAAAAAAAAAAAAAAAA</h1>
+
+
+
+
+		</table>
+		</form>
+    </fieldset>
   </body>
 </html>
