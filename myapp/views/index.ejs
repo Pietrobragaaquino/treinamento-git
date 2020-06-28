@@ -35,5 +35,25 @@
 		</table>
 		</form>
     </fieldset>
+    <fieldset>
+      <form action="/pesquisar" method="GET">
+        Nome: <input type="text" name="conteudo">
+        <input type="submit" value ="Buscar">
+      </form>
+    </fieldset>
+    <table border="1">
+          <tr>
+          <td>Nome</td>
+          <td>Sobrenome</td>
+          <td>telefone</td>
+        </tr>
+          <tr>
+            <td><%= resultado.nome %></td>
+            <td><%= resultado.sobrenome %></td>
+            <td><%= resultado.telefone %></td>
+          </tr>
+    </table>
+
+
   </body>
 </html>
