@@ -47,11 +47,13 @@
           <td>Sobrenome</td>
           <td>telefone</td>
         </tr>
+        <% for(i=0;i<resultado.length;i++) { %>
           <tr>
-            <td><%= resultado.nome %></td>
-            <td><%= resultado.sobrenome %></td>
-            <td><%= resultado.telefone %></td>
+            <td><%= resultado[i].nome %></td>
+            <td><%= resultado[i].sobrenome %></td>
+            <td><%= resultado[i].telefone %></td>
           </tr>
+          <% } %>
     </table>
 
 

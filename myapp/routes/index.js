@@ -48,7 +48,7 @@ router.post('/cadastrar-pessoa', function(req, res, next) {
 
 
 router.get('/pesquisar', function(req, res, next) {
-
+	resultado = []
 	conteudo = req.query.conteudo
 
 fs = require('fs')
@@ -58,8 +58,8 @@ fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
   }
   pessoas = JSON.parse(data)
   for(var i=0;i<pessoas.length;i++){
-  	if(pessoas[i].nome==conteudo){
-  		resultado = pessoas[i]
+  	if(pessoas[i].nome.toLowerCase()==conteudo.toLowerCase()){
+  		resultado.push(pessoas[i])
   	}
   }
 
