@@ -18,7 +18,23 @@ fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
 });
 
 
+
+/* POST CADASTRAR PESSOA */
+
+
 router.post('/cadastrar-pessoa', function(req, res, next) {
+	pessoaslidas = []
+
+fs = require('fs')
+fs.readFile(BANCO_ARQUIVO, pessoaslidas, function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  pessoaslidas = JSON.parse(data)
+
+
+
+
 	resultado ="nada"
 	pessoa = {
 		nome: req.body.nome,
@@ -27,7 +43,16 @@ router.post('/cadastrar-pessoa', function(req, res, next) {
 		cpf: req.body.cpf
 	}
 	pessoas.push(pessoa)
+	for(y=0;y<pessoaslidas.length;y++){
+		if(pessoa.cpf == pessoaslidas[y].cpf){
+			pessoas.pop(pessoa)
+		}
+	}
+	
 	console.log(pessoa)
+
+
+
 
 	const fs = require('fs');
 	fs.writeFile(BANCO_ARQUIVO, JSON.stringify(pessoas), function(err) {
@@ -35,14 +60,17 @@ router.post('/cadastrar-pessoa', function(req, res, next) {
      	   return console.log(err);
    	 }
     	console.log("The file was saved!");
+
+
+    	 res.render('index', { title: 'cadastrar-pessoa',pessoas: pessoas, resultado:resultado });
+
+    	});
 	}); 
 
-
-
-  res.render('index', { title: 'cadastrar-pessoa',pessoas: pessoas, resultado:resultado });
+ 
 });
 
-
+/* FIM POST CADASTRAR PESSOA */
 
 
 

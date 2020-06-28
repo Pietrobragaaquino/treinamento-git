@@ -9,6 +9,7 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <fieldset>
+      <h1>cadastrar</h1>
     	<form action="/cadastrar-pessoa" method="POST" onsubmit="return validacao()">
     	Nome:
  		<input type="text" id="nome" name="nome"> <br>
@@ -38,13 +39,13 @@
   			<% } %>
 		</table>
 		</form>
-    </fieldset>
-    <fieldset>
+    <h1>buscar</h1>
       <form action="/pesquisar" method="GET">
         Nome: <input type="text" name="conteudo">
         <input type="submit" value ="Buscar">
       </form>
-    </fieldset>
+
+      
     <table border="1">
           <tr>
           <td>Nome</td>
@@ -53,7 +54,6 @@
           <td>cpf</td>
           <td>Alterar</td>
           <td>Excluir</td>
-
         </tr>
         <% for(i=0;i<resultado.length;i++) { %>
           <tr>
@@ -66,5 +66,6 @@
           </tr>
           <% } %>
     </table>
+  </fieldset>
   </body>
 </html>
