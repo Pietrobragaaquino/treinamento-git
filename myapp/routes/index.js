@@ -23,7 +23,8 @@ router.post('/cadastrar-pessoa', function(req, res, next) {
 	pessoa = {
 		nome: req.body.nome,
 		sobrenome: req.body.sobrenome,
-		telefone: req.body.telefone
+		telefone: req.body.telefone,
+		cpf: req.body.cpf
 	}
 	pessoas.push(pessoa)
 	console.log(pessoa)
