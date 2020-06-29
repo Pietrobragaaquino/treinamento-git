@@ -27,6 +27,8 @@
   				<td>Sobrenome</td>
   				<td>telefone</td>
           <td>cpf</td>
+          <td></td>
+          <td></td>
   			</tr>
 
   			<% for(i=0;i<pessoas.length;i++) { %>
@@ -35,6 +37,8 @@
   					<td><%= pessoas[i].sobrenome %></td>
   					<td><%= pessoas[i].telefone %></td>
             <td><%= pessoas[i].cpf %></td>
+            <td><a href="/alterar?cpf=<%= pessoas[i].cpf %> " > Alterar</a></td>
+            <td><a href="#" onclick="excluirDados(<%= pessoas[i].cpf %>)">Excluir</a></td>
   				</tr>
   			<% } %>
 		</table>
@@ -52,8 +56,7 @@
           <td>Sobrenome</td>
           <td>telefone</td>
           <td>cpf</td>
-          <td>Alterar</td>
-          <td>Excluir</td>
+          
         </tr>
         <% for(i=0;i<resultado.length;i++) { %>
           <tr>
@@ -61,8 +64,7 @@
             <td><%= resultado[i].sobrenome %></td>
             <td><%= resultado[i].telefone %></td>
             <td><%= resultado[i].cpf %></td>
-            <td></td>
-            <td></td>
+            
           </tr>
           <% } %>
     </table>

@@ -19,6 +19,112 @@ fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
 
 
 
+
+/* GET ALTERAR */
+router.get('/alterar', function(req, res, next) {
+resultado = "nada"
+
+cpfalterar = req.query.cpf
+fs = require('fs')
+fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  pessoas = JSON.parse(data)
+
+  for(i=0;i<pessoas.length;i++){
+  	if(cpfalterar==pessoas[i].cpf){
+  		pessoaalterar=pessoas[i]
+  		break;
+  	}
+  }
+res.render('alterar', { title:'Alterar', 'pessoaalterar': pessoaalterar });
+});
+});
+
+
+
+
+/* POST ALTERAR(2) */
+router.post('/alterar-pessoa', function(req, res, next) {
+resultado ="nada"
+fs = require('fs')
+fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  pessoas = JSON.parse(data)
+  for(x=0;x<pessoas.length;x++){
+  	if(req.query.cpf == pessoas[x].cpf){
+  		pessoas[x].nome=req.body.nome
+  		pessoas[x].sobrenome=req.body.sobrenome
+  		pessoas[x].telefone=req.body.telefone
+  		pessoas[x].cpf=req.body.cpf
+  		break;
+  	}
+  }
+
+const fs = require('fs');
+	fs.writeFile(BANCO_ARQUIVO, JSON.stringify(pessoas), function(err) {
+    	if(err) {
+     	   return console.log(err);
+   	 }
+    res.render('index', { title: 'Express', pessoas: pessoas, resultado: resultado });	
+    	});
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+/* GET EXCLUIR */
+router.get('/excluir', function(req, res, next) {
+resultado ="nada"
+cpfexcluir = req.query.cpf
+fs = require('fs')
+fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  pessoas = JSON.parse(data)
+  for(x=0;x<pessoas.length;x++){
+  	if(cpfexcluir == pessoas[x].cpf){
+  		pessoaexcluir = pessoas[x]
+  		pessoas.pop(pessoaexcluir)
+  	}
+  }
+
+const fs = require('fs');
+	fs.writeFile(BANCO_ARQUIVO, JSON.stringify(pessoas), function(err) {
+    	if(err) {
+     	   return console.log(err);
+   	 }
+
+
+    res.render('index', { title: 'Express', pessoas: pessoas, resultado: resultado });	
+
+    	});
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+
 /* POST CADASTRAR PESSOA */
 
 
