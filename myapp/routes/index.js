@@ -59,7 +59,7 @@ fs.readFile(BANCO_ARQUIVO, pessoas, function (err,data) {
   		pessoas[x].nome=req.body.nome
   		pessoas[x].sobrenome=req.body.sobrenome
   		pessoas[x].telefone=req.body.telefone
-  		pessoas[x].cpf=req.body.cpf
+  		//pessoas[x].cpf=req.body.cpf
   		break;
   	}
   }
