@@ -3,71 +3,9 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-   	<script type="text/javascript" src = "/javascripts/validacao.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <fieldset>
-      <h1>cadastrar</h1>
-    	<form action="/cadastrar-pessoa" method="POST" onsubmit="return validacao()">
-    	Nome:
- 		<input type="text" id="nome" name="nome"> <br>
- 		Sobrenome:
- 		<input type="text" id="sobrenome" name="sobrenome"><br>
- 		Telefone:
- 		<input type="text" id="telefone" name="telefone"><br>
-    Cpf:
-    <input type="text" id="cpf" name="cpf">
- 		<input type="submit" label = "Enviar">
- 		<table border="1">
-
-  			<tr>
-  				<td>Nome</td>
-  				<td>Sobrenome</td>
-  				<td>telefone</td>
-          <td>cpf</td>
-          <td></td>
-          <td></td>
-  			</tr>
-
-  			<% for(i=0;i<pessoas.length;i++) { %>
-  				<tr>
-  					<td><%= pessoas[i].nome %></td>
-  					<td><%= pessoas[i].sobrenome %></td>
-  					<td><%= pessoas[i].telefone %></td>
-            <td><%= pessoas[i].cpf %></td>
-            <td><a href="/alterar?cpf=<%= pessoas[i].cpf %> " > Alterar</a></td>
-            <td><a href="#" onclick="excluirDados(<%= pessoas[i].cpf %>)">Excluir</a></td>
-  				</tr>
-  			<% } %>
-		</table>
-		</form>
-    <h1>buscar</h1>
-      <form action="/pesquisar" method="GET">
-        Nome: <input type="text" name="conteudo">
-        <input type="submit" value ="Buscar">
-      </form>
-
-      
-    <table border="1">
-          <tr>
-          <td>Nome</td>
-          <td>Sobrenome</td>
-          <td>telefone</td>
-          <td>cpf</td>
-          
-        </tr>
-        <% for(i=0;i<resultado.length;i++) { %>
-          <tr>
-            <td><%= resultado[i].nome %></td>
-            <td><%= resultado[i].sobrenome %></td>
-            <td><%= resultado[i].telefone %></td>
-            <td><%= resultado[i].cpf %></td>
-            
-          </tr>
-          <% } %>
-    </table>
-  </fieldset>
   </body>
 </html>
