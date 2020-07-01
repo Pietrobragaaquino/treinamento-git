@@ -2,10 +2,19 @@
 <html>
   <head>
     <title><%= title %></title>
+    <script type="text/javascript" src=/javascripts/validacao.js></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Aplicação com <%= title %></h1>
+    <p>Bem vindo a minha primeira aplicação com <%= title %></p>
+    <form method="POST" action="/cadastrar-pessoa" onsubmit="return validacao()">
+      Nome completo:<input type="text" name="nomecompleto" id="nomecompleto"><br>
+      CPF:<input type="text" name="cpf" id="cpf"><br>
+      Telefone:<input type="text" name="telefone" id="telefone"><br>
+      Endereço:<input type="text" name="endereco" id="endereco"><br>
+      Email:<input type="text" name="email" id="email"><br>
+      <input  type="submit"  value="cadastrar">
+    </form>
   </body>
 </html>
