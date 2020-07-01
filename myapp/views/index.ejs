@@ -16,5 +16,47 @@
       Email:<input type="text" name="email" id="email"><br>
       <input  type="submit"  value="cadastrar">
     </form>
+    <br>
+    <table border='true'>
+      <tr>
+        <td>Nome Completo</td>
+        <td>CPF</td>
+        <td>Telefone</td>
+        <td>Endereço</td>
+        <td>E-mail</td>
+      </tr>
+      <% for(i=0;i<pessoas.length;i++){ %>
+      <tr>
+        <td><%= pessoas[i].nomecompleto%></td>
+        <td><%= pessoas[i].cpf%></td>
+        <td><%= pessoas[i].telefone%></td>
+        <td><%= pessoas[i].endereco%></td>
+        <td><%= pessoas[i].email%></td>
+      </tr>
+      <%}%>
+    </table>
+    <br>
+    <form method="GET" action="/buscarnome" onsubmit="return validacaobusca()">
+      Nome completo:<input type="text" id="nomecompletobusca" name="nomecompleto">
+      <input type="submit" value="Buscar">
+    </form>
+    <table border='true'>
+      <tr>
+        <td>Nome Completo</td>
+        <td>CPF</td>
+        <td>Telefone</td>
+        <td>Endereço</td>
+        <td>E-mail</td>
+      </tr>
+      <% for(i=0;i<resultadobuscanome.length;i++){ %>
+      <tr>
+        <td><%= resultadobuscanome[i].nomecompleto%></td>
+        <td><%= resultadobuscanome[i].cpf%></td>
+        <td><%= resultadobuscanome[i].telefone%></td>
+        <td><%= resultadobuscanome[i].endereco%></td>
+        <td><%= resultadobuscanome[i].email%></td>
+      </tr>
+      <%}%>
+    </table>
   </body>
 </html>

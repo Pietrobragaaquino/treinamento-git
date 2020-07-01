@@ -11,3 +11,13 @@ function validacao(){
 		return true;
 	}	
 }
+
+function validacaobusca(){
+	var nomecompleto = document.getElementById("nomecompletobusca").value
+	if(nomecompleto==""){
+		alert("Digite algo antes de buscar!")
+		return false;
+	}else{
+		return true;
+	}
+}
