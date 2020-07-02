@@ -4,17 +4,47 @@
     <title><%= title %></title>
     <script type="text/javascript" src=/javascripts/validacao.js></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
   </head>
   <body>
     <h1>Aplicação com <%= title %></h1>
     <p>Bem vindo a minha primeira aplicação com <%= title %></p>
-    <form method="POST" action="/alterar-pessoa-dois" onsubmit="return validacao()">
-      Nome completo:<input type="text" name="nomecompleto" id="nomecompleto"><br>
-      CPF:<input type="text" name="cpf" id="cpf" value="<%= cpfpraalterar %>" readonly><br>
-      Telefone:<input type="text" name="telefone" id="telefone"><br>
-      Endereço:<input type="text" name="endereco" id="endereco"><br>
-      Email:<input type="text" name="email" id="email"><br>
-      <input  type="submit"  value="alterar">
+    <form method="POST" action="/alterar-pessoa-dois" onsubmit="return validacao()" class="form-horizontal">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Nome Completo</label>
+        <div class="col-sm-10">
+          <input type="text" name="nomecompleto" id="nomecompleto"><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">CPF</label>
+        <div class="col-sm-10">
+      <input type="text" name="cpf" id="cpf" value="<%= cpfpraalterar %>" readonly><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Telefone</label>
+        <div class="col-sm-10">
+      <input type="text" name="telefone" id="telefone"><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Endereço</label>
+        <div class="col-sm-10">
+      <input type="text" name="endereco" id="endereco"><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
+        <div class="col-sm-10">
+      <input type="text" name="email" id="email"><br>
+      </div>
+      </div>
+      <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input  type="submit"  value="Alterar" class="btn btn-success">
+      </div>
+  </div>
     </form>
   </body>
 </html>

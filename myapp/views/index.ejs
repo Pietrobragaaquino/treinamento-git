@@ -4,26 +4,57 @@
     <title><%= title %></title>
     <script type="text/javascript" src=/javascripts/validacao.js></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
   </head>
   <body>
     <h1>Aplicação com <%= title %></h1>
     <p>Bem vindo a minha primeira aplicação com <%= title %></p>
-    <form method="POST" action="/cadastrar-pessoa" onsubmit="return validacao()">
-      Nome completo:<input type="text" name="nomecompleto" id="nomecompleto"><br>
-      CPF:<input type="text" name="cpf" id="cpf"><br>
-      Telefone:<input type="text" name="telefone" id="telefone"><br>
-      Endereço:<input type="text" name="endereco" id="endereco"><br>
-      Email:<input type="text" name="email" id="email"><br>
-      <input  type="submit"  value="cadastrar">
+    <form method="POST" action="/cadastrar-pessoa" onsubmit="return validacao()" class="form-horizontal">
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">Nome Completo</label>
+        <div class="col-sm-10">
+          <input type="text" name="nomecompleto" id="nomecompleto"><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">CPF</label>
+        <div class="col-sm-10">
+      <input type="text" name="cpf" id="cpf"><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">Telefone</label>
+        <div class="col-sm-10">
+      <input type="text" name="telefone" id="telefone"><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Endereço</label>
+        <div class="col-sm-10">
+      <input type="text" name="endereco" id="endereco"><br>
+      </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">E-mail</label>
+        <div class="col-sm-10">
+      <input type="text" name="email" id="email"><br>
+      </div>
+      </div>
+      <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input  type="submit"  value="Cadastrar" class="btn btn-success">
+      </div>
+  </div>
     </form>
     <br>
-    <table border='true'>
+    <div class="table-responsive">
+    <table class="table table-bordered">
       <tr>
-        <td>Nome Completo</td>
-        <td>CPF</td>
-        <td>Telefone</td>
-        <td>Endereço</td>
-        <td>E-mail</td>
+        <td><b>Nome Completo</b></td>
+        <td><b>CPF</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
       </tr>
       <% for(i=0;i<pessoas.length;i++){ %>
       <tr>
@@ -32,23 +63,25 @@
         <td><%= pessoas[i].telefone%></td>
         <td><%= pessoas[i].endereco%></td>
         <td><%= pessoas[i].email%></td>
-        <td><a href = "/excluir-pessoa?cpf=<%= pessoas[i].cpf%>" onclick = "return temcerteza()">excluir</a></td>
-        <td><a href = "/alterar-pessoa-um?cpf=<%= pessoas[i].cpf%>">alterar</a></td>
+        <td><a href = "/excluir-pessoa?cpf=<%= pessoas[i].cpf%>" onclick = "return temcerteza()"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+        <td><a href = "/alterar-pessoa-um?cpf=<%= pessoas[i].cpf%>"><button type="button" class="btn btn-warning">Alterar</button></a></td>
       </tr>
       <%}%>
     </table>
+  </div>
     <br>
     <form method="GET" action="/buscarnome" onsubmit="return validacaobusca()">
       Nome completo:<input type="text" id="nomecompletobusca" name="nomecompleto">
-      <input type="submit" value="Buscar">
+      <input type="submit" class="btn btn-success" value="Buscar">
     </form>
-    <table border='true'>
+    <div class="table-responsive">
+    <table class="table table-bordered">
       <tr>
-        <td>Nome Completo</td>
-        <td>CPF</td>
-        <td>Telefone</td>
-        <td>Endereço</td>
-        <td>E-mail</td>
+        <td><b>Nome Completo</b></td>
+        <td><b>CPF</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
       </tr>
       <% for(i=0;i<resultadobuscanome.length;i++){ %>
       <tr>
@@ -60,5 +93,6 @@
       </tr>
       <%}%>
     </table>
+    </div>
   </body>
 </html>
