@@ -7,9 +7,12 @@ function validacao(){
 	if(nome==""||cpf==""||telefone==""||endereco==""||email==""){
 		alert("Não deixe espaços em branco!")
 		return false;
+	}else if (isNaN(cpf) || isNaN(telefone)){
+		alert("CPF e telefone devem ser números!")
+		return false;
 	}else{
 		return true;
-	}	
+	}
 }
 
 function validacaobusca(){
@@ -19,5 +22,15 @@ function validacaobusca(){
 		return false;
 	}else{
 		return true;
+	}
+}
+
+
+function temcerteza(){
+	x = confirm("Tem certeza que deseja excluir?"); 
+	if (x == true){
+		return true;
+	}else{
+		return false;
 	}
 }

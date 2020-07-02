@@ -32,6 +32,8 @@
         <td><%= pessoas[i].telefone%></td>
         <td><%= pessoas[i].endereco%></td>
         <td><%= pessoas[i].email%></td>
+        <td><a href = "/excluir-pessoa?cpf=<%= pessoas[i].cpf%>" onclick = "return temcerteza()">excluir</a></td>
+        <td><a href = "/alterar-pessoa-um?cpf=<%= pessoas[i].cpf%>">alterar</a></td>
       </tr>
       <%}%>
     </table>
