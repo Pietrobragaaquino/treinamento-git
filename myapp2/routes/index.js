@@ -9,32 +9,51 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/cliente', function(req, res, next) {
-
-
-
 var sql = "SELECT * FROM `myapp2`.`cliente`";
 var mysql = require('mysql');
-
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
 });
-
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
     con.query(sql, function (err, clientes) {
       if (err) throw err;
       console.log("retornando clientes");
-  res.render('cliente', { mensagem: mensagem, clientes: clientes });
+  res.render('cliente', { clientes: clientes });
 });
     });
   });
 
+
+
+
+
+
+
 router.get('/funcionario', function(req, res, next) {
-  res.render('funcionario', { mensagem: mensagem});
+var sql = "SELECT * FROM `myapp2`.`funcionario`";
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
 });
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+    con.query(sql, function (err, funcionarios) {
+      if (err) throw err;
+      console.log("retornando funcionarios");
+  res.render('funcionario', { funcionarios: funcionarios });
+});
+    });
+  });
+
+
+
 
 router.get('/produto', function(req, res, next) {
   res.render('produto', { mensagem: mensagem});
@@ -129,6 +148,57 @@ router.get('/excluir-cliente', function(req, res, next) {
   });
 });
 
+
+router.post('/cadastrar-funcionario', function(req, res, next) {
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "INSERT INTO `myapp2`.`funcionario` ( `telefone`, `email`, `nome`, `endereco`, `salario`) VALUES ('"+req.body.telefone+"', '"+req.body.email+"', '"+req.body.nome+"', '"+req.body.endereco+"', '"+req.body.salario+"');";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("inserido funcionario");
+    var sql = "SELECT * FROM `myapp2`.`funcionario`";
+    con.query(sql, function (err, funcionarios) {
+      if (err) throw err;
+      console.log("retornando funcionarios");
+      res.render('funcionario', { funcionarios: funcionarios });
+      });
+    });
+  });
+});
+
+router.get('/excluir-funcionario', function(req, res, next) {
+  var mysql = require('mysql');
+  var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  });
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+      var sql = "DELETE FROM `myapp2`.`funcionario` WHERE (`idfuncionario` = '"+req.query.idfuncionario+"');";
+      con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("deletado funcionario");
+      var sql = "SELECT * FROM `myapp2`.`funcionario`";
+      con.query(sql, function (err, funcionarios) {
+      if (err) throw err;
+      console.log("retornado funcionarios");
+      res.render('funcionario', { funcionarios: funcionarios });
+      });
+    });
+  });
+});
 
 
 module.exports = router;

@@ -1,10 +1,10 @@
 html{
 
-    background:linear-gradient(#86e8f4,#044bc2);
+    background-color:#1E90FF;
     background-size: cover;
     -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 
 
 }

@@ -24,6 +24,22 @@ function validacaoCliente(){
 		return true;
 	}
 }
+function validacaoFuncionario(){
+	var salario= $("#salario").val()
+	var nome= $("#nome").val()
+	var telefone = $("#telefone").val()
+	var endereco = $("#endereco").val()
+	var email = $("#email").val()
+	if(nome==""||telefone==""||endereco==""||email==""||salario==""){
+		alert("Não deixe espaços em branco!")
+		return false;
+	}else if (isNaN(telefone)&&isNaN(salario)){
+		alert("Telefone e salário devem ser números!")
+		return false;
+	}else{
+		return true;
+	}
+}
 function temcerteza(){
 	x = confirm("Tem certeza que deseja excluir?"); 
 	if (x == true){

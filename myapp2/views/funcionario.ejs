@@ -14,8 +14,44 @@
   		<a href="/funcionario"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Funcionário</button></a>
   		<a href="/produto"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Produto</button></a>
   		<a href="/compra"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Compra</button></a>
-      <h1 style="margin-left:34%;color:#ffffff">Funcionário</h1>
+
   	</nav>
   	</div>
+    <div style="position:absolute;margin-left:34%;margin-top:200px">
+      <form method="POST" action="/cadastrar-funcionario" onsubmit="return validacaoFuncionario()" class="form-horizontal">
+        <h1 style="color:#ffffff">Funcionário</h1>
+        <p style="background:transparent"><h4 style="color:#ffffff">Nome completo:</h4><input type="text" name="nome" id="nome"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Telefone:</h4><input type="text" name="telefone" id="telefone"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">E-mail:</h4><input type="text" name="email" id="email"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Endereço:</h4><input type="text" name="endereco" id="endereco"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Salário:</h4><input type="text" name="salario" id="salario"> </p>
+        <input class="btn btn-secondary btn-light" type="submit" value="Cadastrar">
+      </form>
+      <br>
+      <div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Nome</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
+        <td><b>Salário</b></td>
+      </tr>
+      <% for(i=0;i<funcionarios.length;i++){ %>
+      <tr>
+        <td><%= funcionarios[i].idfuncionario%></td>
+        <td><%= funcionarios[i].nome%></td>
+        <td><%= funcionarios[i].telefone%></td>
+        <td><%= funcionarios[i].endereco%></td>
+        <td><%= funcionarios[i].email%></td>
+        <td><%= funcionarios[i].salario%></td>
+        <td><a href = "/excluir-funcionario?idfuncionario=<%= funcionarios[i].idfuncionario%>" onclick = "return temcerteza()"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+      </tr>
+      <%}%>
+    </table>
+  </div>
+
+    </div>
   </body>
 </html>
