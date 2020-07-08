@@ -58,7 +58,7 @@ function validacaoProduto(){
 }
 
 function validacaoVenda(){
-	var quantidade = $("#datavenda").val()
+	var quantidade = $("#quantidade").val()
 	var idcliente = $("#idcliente").val()
 	var idfuncionario = $("#idfuncionario").val()
 	var idproduto = $("#idproduto").val()
@@ -66,7 +66,7 @@ function validacaoVenda(){
 	if(datavenda==""||idcliente==""||idfuncionario==""||idproduto==""){
 		alert("Não deixe espaços em branco!")
 		return false;
-	}else if (isNaN(idcliente)&&isNaN(idfuncionario)&&isNaN(idproduto)&&datavenda.length!=10){
+	}else if (isNaN(idcliente)||isNaN(idfuncionario)||isNaN(idproduto)||datavenda.length!=10){
 		alert("Os identificadores deverão ser números inteiros e a data deve ter o formato : YYYY-MM-DD!")
 		return false;
 	}else{
