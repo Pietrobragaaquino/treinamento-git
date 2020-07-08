@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<script type="text/javascript" src=/javascripts/jquery.min.js></script>
+  	<script type="text/javascript" src=/javascripts/validacao.js></script>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
+  </head>
+  <body >
+  	<div style="height:1px">
+  	<nav>
+  		<a href="/cliente"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-left:34%;margin-top:100px">Cliente</button></a>
+  		<a href="/funcionario"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Funcionário</button></a>
+  		<a href="/produto"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Produto</button></a>
+  		<a href="/venda"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Venda</button></a>
+  	</nav>
+  	</div>
+    <div style="position:absolute;margin-left:34%;margin-top:200px">
+      <h1 style="color:#ffffff">Vendas</h1>
+
+
+
+
+
+    <form method="GET" action="/buscarnomecliente" onsubmit="return validacaoClienteBusca()">
+       <p style="background:transparent"><h4 style="color:#ffffff">Nome do cliente:</h4><input type="text" name="nomeclientebusca" id="nomeclientebusca"> </p>
+      <input class="btn btn-secondary btn-light" type="submit" value="Buscar">
+    </form>
+ 
+
+
+  <div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Nome</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
+      </tr>
+      <% for(i=0;i<clientesbusca.length;i++){ %>
+      <tr>
+        <td><%= clientesbusca[i].idcliente%></td>
+        <td><%= clientesbusca[i].nome%></td>
+        <td><%= clientesbusca[i].telefone%></td>
+        <td><%= clientesbusca[i].endereco%></td>
+        <td><%= clientesbusca[i].email%></td>
+      </tr>
+      <%}%>
+    </table>
+  </div>
+
+
+
+   <form method="GET" action="/buscarnomeproduto" onsubmit="return validacaoProdutoBusca()">
+       <p style="background:transparent"><h4 style="color:#ffffff">Nome do produto:</h4><input type="text" name="nomeprodutobusca" id="nomeprodutobusca"> </p>
+      <input class="btn btn-secondary btn-light" type="submit" value="Buscar">
+    </form>
+ 
+
+
+   <div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Nome</b></td>
+        <td><b>Descricao</b></td>
+        <td><b>Valor de compra</b></td>
+        <td><b>Valor de venda</b></td>
+        <td><b>Quantidade em estoque</b></td>
+      </tr>
+      <% for(i=0;i<produtosbusca.length;i++){ %>
+      <tr>
+        <td><%= produtosbusca[i].idproduto%></td>
+        <td><%= produtosbusca[i].nome%></td>
+        <td><%= produtosbusca[i].descricao%></td>
+        <td><%= produtosbusca[i].valorcompra%></td>
+        <td><%= produtosbusca[i].valorvenda%></td>
+        <td><%= produtosbusca[i].quantidade%></td>
+      </tr>
+      <%}%>
+    </table>
+  </div>
+
+
+
+
+
+<form method="GET" action="/buscarnomefuncionario" onsubmit="return validacaoFuncionarioBusca()">
+       <p style="background:transparent"><h4 style="color:#ffffff">Nome do funcionário:</h4><input type="text" name="nomefuncionariobusca" id="nomefuncionariobusca"></p>
+      <input class="btn btn-secondary btn-light" type="submit" value="Buscar">
+    </form>
+ 
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Nome</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
+        <td><b>Salário</b></td>
+      </tr>
+      <% for(i=0;i<funcionariosbusca.length;i++){ %>
+      <tr>
+        <td><%= funcionariosbusca[i].idfuncionario%></td>
+        <td><%= funcionariosbusca[i].nome%></td>
+        <td><%= funcionariosbusca[i].telefone%></td>
+        <td><%= funcionariosbusca[i].endereco%></td>
+        <td><%= funcionariosbusca[i].email%></td>
+        <td><%= funcionariosbusca[i].salario%></td>
+      </tr>
+      <%}%>
+    </table>
+  </div>
+
+
+
+
+
+
+
+<form method="POST" action="/cadastrar-venda" onsubmit="return validacaoVenda()" class="form-horizontal">
+        <h1 style="color:#ffffff">Efetuar uma venda</h1>
+        <p style="background:transparent"><h4 style="color:#ffffff">Identificador do cliente:</h4><input type="text" name="idcliente" id="idcliente"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Identificador do produto:</h4><input type="text" name="idproduto" id="idproduto"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Identificador do funcionário:</h4><input type="text" name="idfuncionario" id="idfuncionario"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Quantidade comprada:</h4><input type="text" name="quantidade" id="quantidade"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Data da venda (YYYY-MM-DD):</h4><input type="text" name="datavenda" id="datavenda"> </p>
+        <input class="btn btn-secondary btn-light" type="submit" value="Cadastrar">
+      </form>
+      <br>
+      <div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Identificador do cliente</b></td>
+        <td><b>Identificador do produto</b></td>
+        <td><b>Identificador do funcionário</b></td>
+        <td><b>Quantidade comprada</b></td>
+        <td><b>Data da venda (YYYY-MM-DD)</b></td>
+      </tr>
+      <% for(i=0;i<vendas.length;i++){ %>
+      <tr>
+        <td><%= vendas[i].idcliente%></td>
+        <td><%= vendas[i].idproduto%></td>
+        <td><%= vendas[i].idfuncionario%></td>
+        <td><%= vendas[i].quantidade%></td>
+        <td><%= vendas[i].datavenda%></td>
+        <td><a href = "/excluir-venda?idvenda=<%= vendas[i].idvenda%>" onclick = "return temcerteza()"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+      </tr>
+      <%}%>
+    </table>
+
+
+
+
+
+
+
+
+
+
+   </div>
+
+  </body>
+</html>
