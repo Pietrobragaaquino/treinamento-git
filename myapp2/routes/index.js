@@ -56,8 +56,26 @@ con.connect(function(err) {
 
 
 router.get('/produto', function(req, res, next) {
-  res.render('produto', { mensagem: mensagem});
+var sql = "SELECT * FROM `myapp2`.`produto`";
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
 });
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+    con.query(sql, function (err, produtos) {
+      if (err) throw err;
+      console.log("retornando produtos");
+  res.render('produto', { produtos: produtos });
+});
+    });
+  });
+
+
+
 
 router.get('/compra', function(req, res, next) {
   res.render('compra', { mensagem: mensagem });
@@ -200,5 +218,58 @@ router.get('/excluir-funcionario', function(req, res, next) {
   });
 });
 
+
+
+router.post('/cadastrar-produto', function(req, res, next) {
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "INSERT INTO `myapp2`.`produto` ( `nome`, `descricao`, `valorcompra`, `valorvenda`, `quantidade`) VALUES ('"+req.body.nome+"', '"+req.body.descricao+"', '"+req.body.valorcompra+"', '"+req.body.valorvenda+"', '"+req.body.quantidade+"');";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("inserido produto");
+    var sql = "SELECT * FROM `myapp2`.`produto`";
+    con.query(sql, function (err, produtos) {
+      if (err) throw err;
+      console.log("retornando produtos");
+      res.render('produto', { produtos: produtos });
+      });
+    });
+  });
+});
+
+
+router.get('/excluir-produto', function(req, res, next) {
+  var mysql = require('mysql');
+  var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  });
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+      var sql = "DELETE FROM `myapp2`.`produto` WHERE (`idproduto` = '"+req.query.idproduto+"');";
+      con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("deletado produto");
+      var sql = "SELECT * FROM `myapp2`.`produto`";
+      con.query(sql, function (err, produtos) {
+      if (err) throw err;
+      console.log("retornado produtos");
+      res.render('produto', { produtos:produtos });
+      });
+    });
+  });
+});
 
 module.exports = router;

@@ -40,6 +40,22 @@ function validacaoFuncionario(){
 		return true;
 	}
 }
+function validacaoProduto(){
+	var nome= $("#nome").val()
+	var descricao= $("#descricao").val()
+	var valorcompra = $("#valorcompra").val()
+	var valorvenda = $("#valorvenda").val()
+	var quantidade = $("#quantidade").val()
+	if(nome==""||descricao==""||valorcompra==""||valorvenda==""||quantidade==""){
+		alert("Não deixe espaços em branco!")
+		return false;
+	}else if (isNaN(quantidade)&&isFloat(valorcompra)&&isFloat(valorvenda)){
+		alert("Quantidade deve ser inteiro, valor de compra deve ser float e valor de venda deve ser float!")
+		return false;
+	}else{
+		return true;
+	}
+}
 function temcerteza(){
 	x = confirm("Tem certeza que deseja excluir?"); 
 	if (x == true){
