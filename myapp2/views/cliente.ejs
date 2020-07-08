@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<script type="text/javascript" src=/javascripts/jquery.min.js></script>
+  	<script type="text/javascript" src=/javascripts/validacao.js></script>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
+  </head>
+  <body >
+  	<div style="height:1px">
+  	<nav>
+  		<a href="/cliente"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-left:34%;margin-top:100px">Cliente</button></a>
+  		<a href="/funcionario"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Funcionário</button></a>
+  		<a href="/produto"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Produto</button></a>
+  		<a href="/compra"><button class="btn btn-secondary btn-lg"  style="font-size:30px;margin-top:100px">Compra</button></a>
+      
+  	</nav>
+  	</div>
+
+
+    <div style="position:absolute;margin-left:34%;margin-top:200px">
+      <form method="POST" action="/cadastrar-cliente" onsubmit="return validacaoCliente()" class="form-horizontal">
+        <h1 style="color:#ffffff">Cliente</h1>
+        <p style="background:transparent"><h4 style="color:#ffffff">Nome completo:</h4><input type="text" name="nome" id="nome"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Telefone:</h4><input type="text" name="telefone" id="telefone"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">E-mail:</h4><input type="text" name="email" id="email"> </p>
+        <p style="background:transparent"><h4 style="color:#ffffff">Endereço:</h4><input type="text" name="endereco" id="endereco"> </p>
+        <input class="btn btn-secondary btn-light" type="submit" value="Cadastrar">
+      </form>
+      <br>
+      <div class="table-responsive">
+    <table class="table table-bordered" style="color:#ffffff">
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Nome</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>E-mail</b></td>
+      </tr>
+      <% for(i=0;i<clientes.length;i++){ %>
+      <tr>
+        <td><%= clientes[i].idcliente%></td>
+        <td><%= clientes[i].nome%></td>
+        <td><%= clientes[i].telefone%></td>
+        <td><%= clientes[i].endereco%></td>
+        <td><%= clientes[i].email%></td>
+        <td><a href = "/excluir-cliente?idcliente=<%= clientes[i].idcliente%>" onclick = "return temcerteza()"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+      </tr>
+      <%}%>
+    </table>
+  </div>
+
+    </div>
+     
+
+  </body>
+</html>
